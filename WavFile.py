@@ -5,6 +5,7 @@ from file_writer import FileWriter
 class WaveFile(object):
 
     def __init__(self, file_path):
+        print("Reading the file...")
         file_reader = FileReader(file_path)
         self.file_name = file_reader.file_name
         # Read the header
