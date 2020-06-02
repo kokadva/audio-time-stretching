@@ -3,9 +3,11 @@ class FileReader(object):
     def __init__(self, file_path):
         self.index = 0
         f = open(file_path, 'rb')
+        self.file_name = f.name
         self.data = f.read()
         f.close()
         self.length = len(self.data)
+
 
     def has_next(self):
         return self.index < self.length

@@ -6,7 +6,7 @@ class WaveFile(object):
 
     def __init__(self, file_path):
         file_reader = FileReader(file_path)
-
+        self.file_name = file_reader.file_name
         # Read the header
         self.file_path = file_path
         self.chunk_id = file_reader.next_string(4)
@@ -36,6 +36,7 @@ class WaveFile(object):
                 channel_i += 1
 
     def save(self, output_file_path):
+        print("Saving...")
         # Write header
         file_writer = FileWriter(output_file_path)
         file_writer.start_writing()
@@ -59,3 +60,4 @@ class WaveFile(object):
             for i in range(len(self.samples)):
                 file_writer.write_int(self.samples[i][k], self.bytes_per_sample)
         file_writer.finish_writing()
+        print("Done")
