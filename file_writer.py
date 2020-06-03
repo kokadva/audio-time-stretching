@@ -10,7 +10,11 @@ class FileWriter(object):
         self.file.close()
 
     def write_int(self, value, byte_length):
-        self.file.write(value.to_bytes(byte_length, byteorder='little'))
+        try:
+            self.file.write(value.to_bytes(byte_length, byteorder='little'))
+        except:
+            value = pow(2, 8 * byte_length) - 1
+            self.file.write(value.to_bytes(byte_length, byteorder='little'))
 
     def write_string(self, value):
         self.file.write(value.encode('utf-8'))

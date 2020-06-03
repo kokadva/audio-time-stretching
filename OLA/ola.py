@@ -4,6 +4,9 @@ from OLA.constants import CHUNK_SIZE
 def set_speed(wav, speed=0.5):
     print("Slowing down by", speed)
 
+    """
+        See the details in the readme
+    """
     chunk_overlap_ratio = 1 / speed / 4
 
     """
@@ -56,8 +59,7 @@ def set_speed(wav, speed=0.5):
                                                       * CHUNK_SIZE * chunk_overlap_ratio
                                                       + (k - chunk_start_index))
                     output_samples[channel_index][target_sample_index_to_copy] = \
-                        min(output_samples[channel_index][target_sample_index_to_copy] + wav.samples[channel_index][k],
-                            255)
+                        output_samples[channel_index][target_sample_index_to_copy] + wav.samples[channel_index][k]
 
         overlap_index += 2
 
